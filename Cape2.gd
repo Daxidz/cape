@@ -5,11 +5,11 @@ enum IDX_MODES {IDLE, UP, DOWN, RIGHT, LEFT}
 const MAX_OFFSET = 1
 const MIN_OFFSET = -1
 
-const approch_indexes = [[ Vector2(0.0, 1.0), Vector2(-0.0, 2.0) , Vector2(-0, 4.0) ],
+const approch_indexes = [[ Vector2(0.0, 1.0), Vector2(-0.0, 3.0) , Vector2(-0, 6.0) ],
 [ Vector2(0.0, 1.0), Vector2(0.0, 4.0) , Vector2(0.0, 5.0) ],
 [ Vector2(0.0, -1.0), Vector2(0.0, -4.0) , Vector2(0.0, -5.0) ],
-[ Vector2(-1.0, 0.0), Vector2(-4.0, 0.0) , Vector2(-4.0, 0.0) ],
-[ Vector2(1.0, 0.0), Vector2(4.0, 0.0) , Vector2(4.0, 0.0) ]]
+[ Vector2(-1.0, 0.0), Vector2(-4.0, 0.0) , Vector2(-6.0, 0.0) ],
+[ Vector2(1.0, 0.0), Vector2(4.0, 0.0) , Vector2(6.0, 0.0) ]]
 
 var FOLLOW_SPEEDS = [20, 40, 40, 30, 30]
 const RESTING_FOLLOW_SPEED = 1
@@ -62,14 +62,15 @@ func _physics_process(delta):
 #		follow1.global_position += offset
 		
 		offset.x = rng.randi_range(MIN_OFFSET, MAX_OFFSET)
-		offset.y = rng.randi_range(MIN_OFFSET, MAX_OFFSET)
-		follow2.global_position += offset
+#		offset.y = rng.randi_range(MIN_OFFSET, MAX_OFFSET)
+		follow1.global_position += offset
 
 
 	follow1.global_position = follow1.global_position.linear_interpolate(global_position + approch_indexes[current_idx][1], delta * FOLLOW_SPEEDS[current_idx])
 	follow2.global_position = follow2.global_position.linear_interpolate(follow1.global_position + approch_indexes[current_idx][2] , delta * FOLLOW_SPEEDS[current_idx])
 	
-	rotation = global_position.angle_to_point(get_parent().position) - PI /2
+#	rotation = global_position.angle_to_point(get_parent().velocity.angle()) - PI /2
+	rotation = get_parent().velocity.angle() + PI /2
 	follow1.rotation = follow1.global_position.angle_to_point(global_position) - PI /2
 	follow2.rotation = follow2.global_position.angle_to_point(follow1.global_position) - PI /2
 		
