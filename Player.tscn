@@ -31,7 +31,7 @@ texture = ExtResource( 3 )
 hframes = 8
 
 [node name="Base" parent="Sprite" instance=ExtResource( 2 )]
-position = Vector2( -0.170716, -10.4118 )
+position = Vector2( -0.170716, -10.5961 )
 scale = Vector2( 2, 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
