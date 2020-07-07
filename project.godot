@@ -16,14 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Cape"
-run/main_scene="res://Cape.tscn"
+run/main_scene="res://Player.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=300
 window/size/height=100
-window/size/fullscreen=true
 window/size/test_width=600
 window/size/test_height=200
 window/stretch/mode="viewport"
